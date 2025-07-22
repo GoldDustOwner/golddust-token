@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldDust (GLDD)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/GoldDustOwner/golddust-token/main/blockchains/ethereum/assets/0x7cc5249f7379cD8b45D9F226470022c70c814f90/golddust.png?raw=true" alt="GoldDust Logo" class="logo">
+        <h1>GoldDust (GLDD)</h1>
+        <p class="slogan">GoldDust (GLDD): Utility, Speed, and Trust on Base</p>
+        <div class="info">
+            <p><strong>Total Supply:</strong> 1,000,000,000 GLDD</p>
+            <p><strong>Token Address:</strong> <code id="contract">0x7cc5249f7379cD8b45D9F226470022c70c814f90</code></p>
+        </div>
+        <div class="buttons">
+            <a href="https://basescan.org/token/0x7cc5249f7379cD8b45D9F226470022c70c814f90" target="_blank">View on BaseScan</a>
+            <button onclick="addToMetaMask()">Add to MetaMask</button>
+            <button onclick="copyAddress()">Copy Address</button>
+        </div>
+    </div>
+    <script>
+        const tokenAddress = "0x7cc5249f7379cD8b45D9F226470022c70c814f90";
+        const tokenSymbol = "GLDD";
+        const tokenDecimals = 18;
+        const tokenImage = "https://raw.githubusercontent.com/GoldDustOwner/golddust-token/main/blockchains/ethereum/assets/0x7cc5249f7379cD8b45D9F226470022c70c814f90/golddust.png?raw=true";
+
+        async function addToMetaMask() {
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_watchAsset',
+                    params: {
+                        type: 'ERC20',
+                        options: {
+                            address: tokenAddress,
+                            symbol: tokenSymbol,
+                            decimals: tokenDecimals,
+                            image: tokenImage,
+                        },
+                    },
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        function copyAddress() {
+            navigator.clipboard.writeText(tokenAddress);
+            alert("Contract address copied!");
+        }
+    </script>
+</body>
+</html>
